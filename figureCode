@@ -1,0 +1,19 @@
+n = 10 ^ 4 #10 ^ 6
+k = 10;
+c = 2.21;
+gamma = 0.95;
+T = norminv((1 + gamma) / 2)
+
+function [res] = f(x)
+  a = 3;
+  res = x ^ a;
+endfunction
+
+R = rand(k, n);
+R_mapped = arrayfun(@f, R);
+F = sum(R_mapped);
+V = mean(F <= c)
+delta = T * sqrt(V * (1 - V) / n)
+left_border = V - d
+right_border = V + d
+interval = [left_border, right_border]

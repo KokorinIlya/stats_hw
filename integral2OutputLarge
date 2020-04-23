@@ -1,0 +1,12 @@
+n =  1000000
+gamma =  0.95000
+T =  1.9600
+integral =  0.64816
+monte_carlo_integral =  0.64804
+delta_integrals =    1.2534e-04
+delta =  0.0016864
+left_border =  0.64635
+right_border =  0.64972
+interval =
+
+   0.64635   0.64972

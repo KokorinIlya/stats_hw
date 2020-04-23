@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\lstset{
+	language=Octave,
+	frame=single,
+	xleftmargin=.1\textwidth, xrightmargin=.1\textwidth
+}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2.1cm,bindingoffset=0cm]{geometry}
+
+\title{Типовой расчёт}
+\author{Кокорин Илья, M3339}
+\date{Вариант № 10}
+
+\begin{document}
+	\maketitle
+	\section{Оценка объёма}
+	\subsection{Дано}
+	\begin{itemize}
+		\item Функция $f$ имеет вид $f(x) = x^a$
+		\item $a = 3$
+		\item $k = 10$
+		\item $c = 2.21$ 
+		\item $\sum\limits_{i = 1}^{k} x_i^3 \leq 2.21$
+	\end{itemize}
+	\subsection{Программа для вычисления объёма $\{F(\overline{x}) \le c\}$}
+	\begin{minipage}{\linewidth}
+		\lstinputlisting{figureCode}
+	\end{minipage}
+	\subsection{Вывод программы для $n = 10 ^ 4$ и $n = 10 ^ 6$}
+	\begin{center}
+		\begin{tabular}{c}
+			\begin{minipage}{\linewidth}
+				\lstinputlisting{figureOutputSmall}
+				\lstinputlisting{figureOutputLarge}
+			\end{minipage}
+		\end{tabular}
+	\end{center}
+	\subsection{Вывод}
+	Заметим, что $[0.39515;  0.39707] \subset [0.38741; 0.40659]$ , то есть доверительный интервал для $n = 10^6$ содержится в доверительном интервале для $n = 10^4$.\\
+	При увеличении размера выборки с $n = 10 ^ 4$ до $n = 10 ^ 6$, в $100$ раз, размер доверительного интервала $delta$ уменьшился примерно в $10$ раз.
+	\section{Оценка интеграла № 1}
+	\subsubsection{Дано}
+	$$ I = \int\limits_{-\infty}^{+\infty} \sqrt{1 + x ^ 2} e^{\frac{-(x + 2)^2}{4}} dx$$
+	\subsubsection{Программа для вычисления I}
+	\begin{minipage}{\linewidth}
+		\lstinputlisting{integral1Code}
+	\end{minipage}
+	\subsubsection{Вывод программы для $n = 10 ^ 4$ и $n = 10 ^ 6$}
+	\begin{minipage}{\linewidth}
+		\lstinputlisting{integral1OutputSmall}
+		\lstinputlisting{integral1OutputLarge}
+	\end{minipage}
+	\subsubsection{Вывод}
+	Значение  интеграла, посчитанное стандартными средствами Octave, содержится в доверительном интервале как при размере выборки $n = 10^4$ так и при $n = 10^6$. \\
+	$[8.5369; 8.5521] \subset [8.4705; 8.6215]$, то есть доверительный интервал для $n = 10^6$ содержится в доверительном интервале для $n = 10^4$. \\
+	При увеличении размера выборки с $n = 10 ^ 4$ до $n = 10 ^ 6$, в $100$ раз, размер доверительного интервала $delta$ уменьшился примерно в $10$ раз.
+	
+	
+	\section{Оценка интеграла № 2}
+	\subsubsection{Дано}
+	$$I = \int\limits_{0}^{5} \frac{\sin{x}}{x ^ 2 + 1}dx$$
+	\subsubsection{Программа для вычисления $I$}
+	\begin{minipage}{\linewidth}
+		\lstinputlisting{integral2Code}
+	\end{minipage}
+	
+	
+	С помощью функции quad вычисляется значение интеграла встроенными средствами Octave.
+	\subsubsection{Вывод программы для $n = 10 ^ 4$ и $n = 10 ^ 6$}
+	\begin{minipage}{\linewidth}
+		\lstinputlisting{integral2OutputSmall}
+		\lstinputlisting{integral2OutputLarge}
+	\end{minipage}
+	\subsubsection{Вывод}
+	Значение  интеграла, посчитанное стандартными средствами Octave, содержится в доверительном интервале как при размере выборки $n = 10^4$ так и при $n = 10^6$. \\
+	$[0.64635; 0.64972] \subset [0.63213; 0.66593]$, то есть доверительный интервал для $n = 10^6$ содержится в доверительном интервале для $n = 10^4$. \\
+	При увеличении размера выборки с $n = 10 ^ 4$ до $n = 10 ^ 6$, в $100$ раз, размер доверительного интервала $delta$ уменьшился примерно в $10$ раз. Разница между значениями интеграла, посчитанным стандартными средствами octave и методом Монте-Карло уменьшилась примерно в 7 раз.
+\end{document}
+

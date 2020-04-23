@@ -1,0 +1,21 @@
+n = 10 ^ 4 # 10 ^ 6
+gamma = 0.95
+T = norminv((1 + gamma) / 2)
+
+function res = f(x)
+  res = sin(x) / (x^2 + 1);
+endfunction
+
+a = 0;
+b = 5;
+
+integral = quad(@f, a, b)
+
+X = rand(1, n) .* (b - a) .+ a;
+fX = arrayfun(@f, X) .* (b - a);
+monte_carlo_integral = mean(fX)
+delta_integrals = abs(monte_carlo_integral - integral)
+delta = (std(fX) * T) / sqrt(n)
+left_border = monte_carlo_integral - delta
+right_border = monte_carlo_integral + delta
+interval = [left_border, right_border]
